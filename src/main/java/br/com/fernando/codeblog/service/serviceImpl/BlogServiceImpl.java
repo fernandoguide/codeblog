@@ -14,7 +14,7 @@ import java.util.List;
 public class BlogServiceImpl  implements BlogService {
 
     @Autowired
-    private BlogRepository blogRepository;
+    BlogRepository blogRepository;
 
     @Override
     public List<Post> findAll() {
