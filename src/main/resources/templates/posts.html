@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
+
+
 <head>
-    <title>MyCodeBlog</title>
+    <title>Meu Blog</title>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!-- Bootstrap CSS -->
@@ -30,13 +32,21 @@
                     <span th:text="${post.autor}"></span>
                     <span th:text="${post.data}"></span>
                 </p>
-                <a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}"><h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"><span th:text="${post.titulo}"></span></h4></a>
-                <p class="card-text"><span th:utext="${#strings.abbreviate(post.texto,400)} "></span></p>
+                <a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}">
+                    <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;">
+                        <span th:text="${post.titulo}"></span>
+                    </h4></a>
+
+                <p class="card-text">
+                    <span th:utext="${#strings.abbreviate(post.texto,400)} "></span>
+                </p>
+                <a th:data-href="@{/posts/excluir/{id} (id=${post.id})}"  class="btn btn-danger"
+                   role="button">Excluir Post</a>
                 <!--<a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>-->
             </div>
         </div>
     </div>
-</section>
 
+</section>
 </body>
 </html>

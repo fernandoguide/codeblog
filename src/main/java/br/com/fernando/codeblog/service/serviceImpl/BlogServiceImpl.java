@@ -5,8 +5,8 @@ import br.com.fernando.codeblog.model.Post;
 import br.com.fernando.codeblog.repository.BlogRepository;
 import br.com.fernando.codeblog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +30,13 @@ public class BlogServiceImpl  implements BlogService {
     public Post save(Post post) {
         return blogRepository.save(post);
     }
+
+    @Transactional
+    public void excluir(final Long id) {
+        final Post post = this.blogRepository.getOne(id);
+        this.blogRepository.delete(post);
+    }
+
 
 //    private Sort sortByIdAsc() {
 //        return new Sort(Sort.Direction.DESC,"id");
