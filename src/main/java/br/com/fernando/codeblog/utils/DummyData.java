@@ -15,7 +15,7 @@ public class DummyData {
     @Autowired
     BlogRepository blogRepository;
 
-    //@PostConstruct
+//    @PostConstruct
     public void savePosts(){
 
         List<Post> postList = new ArrayList<>();
@@ -36,7 +36,7 @@ public class DummyData {
 
         for(Post post: postList){
             Post postSaved = blogRepository.save(post);
-            System.out.println(postSaved.getId());
+            System.out.println(postSaved.getId() );
         }
     }
 }

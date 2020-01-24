@@ -42,11 +42,11 @@ public class BlogController {
         mv.addObject("post", post);
         return mv;
     }
-    @DeleteMapping(value="/posts/{id}")
+    @RequestMapping(value = "/posts/{id}",method=RequestMethod.DELETE)
         public ModelAndView excluir(@PathVariable("id") final Long id, final RedirectAttributes attr) {
         this.blogService.excluir(id);
         attr.addFlashAttribute("Excluir","Excluido com Sucesso");
-        return new ModelAndView("redirect:/post");
+        return new ModelAndView("redirect:/posts");
     }
 
     @GetMapping(value="/newpost")
@@ -65,73 +65,4 @@ public class BlogController {
         return "redirect:/posts";
     }
 }
-//    @Slf4j
-//    @Controller
-//    @RequestMapping("/cliente")
-//    public class ClienteController {
-//
-//        @Autowired
-//        private ClienteService clienteService;
-//
-//        @RequestMapping("/new")
-//        public ModelAndView getIndex(final Cliente cliente) {
-//            final ModelAndView mv = new ModelAndView(ConstantsCliente.Cliente.CRIAR);
-//            return mv.addObject("cliente", cliente);
-//        }
-//
-//        @RequestMapping(value = "/", method = RequestMethod.POST)
-//        public ModelAndView createCliente(@Valid final Cliente clienteNew, final RedirectAttributes attr,
-//                                          final Model model) {
-//            if (!clienteNew.isValid()) {
-//                final ModelAndView mv = new ModelAndView(ConstantsCliente.Cliente.CRIAR);
-//                model.addAttribute("erro", "Preencha todos os dados do cliente.");
-//                return mv.addObject("cliente", clienteNew);
-//            }
-//
-//            try {
-//                this.clienteService.save(clienteNew);
-//                attr.addFlashAttribute(ConstantsCliente.Cliente.SUCCESS, ConstantsCliente.Cliente.MENSAGEM_SUCESSO);
-//            } catch (Exception e) {
-//                attr.addFlashAttribute(ConstantsCliente.Cliente.ERRO, ConstantsCliente.Cliente.ERRO);
-//                log.error(e.getMessage());
-//                return new ModelAndView(ConstantsCliente.Cliente.NEW);
-//            }
-//            final List<Cliente> clientes = this.clienteService.getAllCliente();
-//            return new ModelAndView(ConstantsCliente.Cliente.REDIRECT_LISTAR).addObject("clientes", clientes);
-//        }
-//
-//        @GetMapping("/editar/{id}")
-//        public String preEditar(@PathVariable("id") final Long id, final ModelMap model) {
-//            final Cliente cliente = clienteService.findById(id);
-//            model.addAttribute("cliente", cliente);
-//            return ConstantsCliente.Cliente.CRIAR;
-//        }
-//
-//        @PostMapping("/editar")
-//        public ModelAndView editar(@Valid final Cliente cliente, final BindingResult result,
-//                                   final RedirectAttributes attr) {
-//            if (result.hasErrors()) {
-//                attr.addFlashAttribute(ConstantsCliente.Cliente.ERRO, ConstantsCliente.Cliente.EDITAR_ERRO);
-//                return new ModelAndView(ConstantsCliente.Cliente.CRIAR);
-//            }
-//            clienteService.save(cliente);
-//            attr.addFlashAttribute(ConstantsCliente.Cliente.SUCCESS, ConstantsCliente.Cliente.EDITAR_SUCESSO);
-//            return new ModelAndView(ConstantsCliente.Cliente.REDIRECT_LISTAR);
-//        }
-//
-//        @GetMapping("/listar")
-//        public ModelAndView listar() {
-//            final ModelAndView mv = new ModelAndView(ConstantsCliente.Cliente.LISTAR);
-//            final List<Cliente> clientes = clienteService.getAllCliente();
-//            mv.addObject("clientes", clientes);
-//            return mv;
-//        }
-//
-//        @GetMapping("/excluir/{id}")
-//        public ModelAndView excluir(@PathVariable("id") final Long id, final RedirectAttributes attr) {
-//            this.clienteService.excluir(id);
-//            attr.addFlashAttribute(ConstantsCliente.Cliente.SUCCESS, ConstantsCliente.Cliente.EXCLUIR_SUCESSO);
-//            return new ModelAndView(ConstantsCliente.Cliente.REDIRECT_LISTAR);
-//        }
-//    }
 

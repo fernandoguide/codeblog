@@ -40,8 +40,9 @@
                 <p class="card-text">
                     <span th:utext="${#strings.abbreviate(post.texto,400)} "></span>
                 </p>
-                <a th:data-href="@{/posts/excluir/{id} (id=${post.id})}"  class="btn btn-danger"
-                   role="button">Excluir Post</a>
+<!--                <button type="submit" th:data-href="@{/posts/{id} (id=${post.id})}" class="btn btn-danger">-->
+<!--                    Excluir Post-->
+<!--                </button>-->
                 <!--<a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>-->
             </div>
         </div>
