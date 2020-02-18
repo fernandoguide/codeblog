@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+
+
 @Controller
 public class BlogController {
 
@@ -27,7 +29,7 @@ public class BlogController {
         return "index";
     }
 
-    @GetMapping(value="/posts")
+    @GetMapping(value = "/posts")
     public ModelAndView getPosts(){
         ModelAndView mv = new ModelAndView("posts");
         List<Post> posts = blogService.findAll();
@@ -42,11 +44,11 @@ public class BlogController {
         mv.addObject("post", post);
         return mv;
     }
-    @RequestMapping(value = "/posts/{id}",method=RequestMethod.DELETE)
+    @DeleteMapping(value = "/posts/{id}")
         public ModelAndView excluir(@PathVariable("id") final Long id, final RedirectAttributes attr) {
         this.blogService.excluir(id);
         attr.addFlashAttribute("Excluir","Excluido com Sucesso");
-        return new ModelAndView("redirect:/posts");
+        return this.getPosts();
     }
 
     @GetMapping(value="/newpost")

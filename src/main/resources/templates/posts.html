@@ -43,7 +43,7 @@
 <!--                <button type="submit" th:data-href="@{/posts/{id} (id=${post.id})}" class="btn btn-danger">-->
 <!--                    Excluir Post-->
 <!--                </button>-->
-                <!--<a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>-->
+                <a th:href="${(#mvc.url('BC#getPostDetails').arg(0, post.id)).build()}" class="card-link">Acessar</a>
             </div>
         </div>
     </div>
